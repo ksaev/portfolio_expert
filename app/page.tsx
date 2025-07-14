@@ -71,7 +71,7 @@ const FloatingParticles = () => {
 // Composant de morphing entre les rôles
 const RoleMorpher = () => {
   const roles = [
-    { text: "Professionnel Marketing Digital", color: "#10B981", icon: TrendingUp },
+    { text: "Marketeur Digital", color: "#10B981", icon: TrendingUp },
     { text: "Développeur Full Stack", color: "#3B82F6", icon: Code2 },
     { text: "Data analyste", color: "#8B5CF6", icon: Database },
     { text: "Technicien Informatique", color: "#8B5CF6", icon: Server },
@@ -564,7 +564,7 @@ export default function ExpertPortfolio() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-2xl sm:mb-8"
+                className="text-2xl sm:text-3xl mb-8 pb-1"
               >
                 <RoleMorpher />
               </motion.div>
