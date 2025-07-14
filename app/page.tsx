@@ -492,14 +492,14 @@ export default function ExpertPortfolio() {
         className="fixed  transform -translate-x-1/2 z-40 left-8 top-8"
       >
       <div className="8bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg border border-white/20 w-full max-w-fit mx-auto">
-       <div className="flex w-full justify-center sm:justify-start items-center space-x-6">
+       <div className="flex w-full justify-start items-center sm:space-x-6">
           <div className="hidden sm:flex items-center space-x-2">
             <div className="w-8 h-8 rounded-full overflow-hidden">
               <Image src="/images/profiler.png" alt="KSAEV" width={32} height={32} className="object-cover" />
             </div>
             <span className="font-semibold text-gray-800">KSAEV</span>
           </div>
-            <div className="flex space-x-4">
+            <div className="flex space-x-2 sm:space-x-4">
               {["Accueil", "Expertise", "Projets", "Contact"].map((item) => (
                 <a
                   key={item}
