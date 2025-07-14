@@ -553,7 +553,7 @@ export default function ExpertPortfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-xl sm:text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent"
+                className="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent"
               >
                 KOUASSI SIEBE
                 <br />
@@ -564,7 +564,7 @@ export default function ExpertPortfolio() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="mb-8"
+                className="text-2xl sm:mb-8"
               >
                 <RoleMorpher />
               </motion.div>
@@ -573,7 +573,7 @@ export default function ExpertPortfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="text-xs sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+                className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
               >
                 Expert polyvalent combinant <span className="text-green-600 font-semibold">marketing digital</span>,{" "}
                 <span className="text-blue-600 font-semibold">développement</span> et{" "}
