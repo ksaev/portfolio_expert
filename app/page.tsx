@@ -564,7 +564,7 @@ export default function ExpertPortfolio() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-2xl sm:text-3xl mb-8 pb-1"
+                className="text-base sm:text-3xl mb-4"
               >
                 <RoleMorpher />
               </motion.div>
@@ -573,7 +573,7 @@ export default function ExpertPortfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+                className="text-base sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
               >
                 Expert polyvalent combinant <span className="text-green-600 font-semibold">marketing digital</span>,{" "}
                 <span className="text-blue-600 font-semibold">développement</span> et{" "}
