@@ -452,7 +452,7 @@ export default function ExpertPortfolio() {
       description:
         "Application Desktop complète dédiée à la gestion des stocks, des commandes, des clients et des fournisseurs dans le secteur des dépôts de boissons.",
       image: "/cave.jpg",
-      type: "Data Analyste / Superviseur",
+      type: "Dev",
       domains: ["Data Analyste", "IT"],
       technologies: ["Java Swing", "Mysql"],
       metrics: { agents: "12+", accuracy: "98%", sync: "99.9%" },
@@ -553,7 +553,7 @@ export default function ExpertPortfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent"
+                className="text-xl sm:text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent"
               >
                 KOUASSI SIEBE
                 <br />
@@ -573,7 +573,7 @@ export default function ExpertPortfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+                className="text-xs sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
               >
                 Expert polyvalent combinant <span className="text-green-600 font-semibold">marketing digital</span>,{" "}
                 <span className="text-blue-600 font-semibold">développement</span> et{" "}
