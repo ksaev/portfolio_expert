@@ -10,6 +10,11 @@ import { Badge } from "@/components/ui/badge"
 import {
   Code2,
   Server,
+  BrainCog,     // IA
+  Bot,          // IA
+  Megaphone,    // Contenus numériques & Personal Branding
+  UserSquare,   // Contenus numériques & Personal Branding
+  Workflow, 
   TrendingUp,
   Users,
   Database,
@@ -305,20 +310,11 @@ export default function ExpertPortfolio() {
 
   const expertiseAreas = [
     {
-      title: "Marketing Digital",
-      icon: TrendingUp,
-      color: "#10B981",
-      description: "Stratégies digitales, campagnes publicitaires, génération de leads",
-      skills: ["LinkedIn Ads", "Facebook Ads", "Google Analytics", "Marketing Automation"],
-      projects: 5,
-      clients: 5,
-    },
-    {
       title: "Développement",
       icon: Code2,
       color: "#3B82F6",
       description: "Applications web, mobile, systèmes de gestion sur mesure",
-      skills: ["React/Next.js", "Node.js", "Python", "Bases de données"],
+      skills: ["Java", "Spring Boot", "React/Next.js", "Node.js", "Python","Flutter", "Bases de données"],
       projects: 10,
       clients: 5,
     },
@@ -331,6 +327,51 @@ export default function ExpertPortfolio() {
       projects: 5,
       clients: 5,
     },
+
+    {
+      title: " Intelligence Artificielle",
+      icon: BrainCog,
+      color: "#760cbf",
+      description: "Transmission des fondamentaux et applications concrètes de l’IA",
+      skills: ["Machine Learning", "ChatGPT", "Midjourney", "Python", "Data Analysis", "Prompt Engineering", "Automatisation IA"],
+      projects: 5,
+      clients: 5,
+    },
+        {
+      title: "Marketing Digital",
+      icon: TrendingUp,
+      color: "#10B981",
+      description: "Stratégies digitales, campagnes publicitaires, génération de leads",
+      skills: ["LinkedIn Ads", "Facebook Ads", "Google Analytics", "Marketing Automation"],
+      projects: 5,
+      clients: 5,
+    },
+    {
+      title: "Gestion de groupes & d’équipes",
+      icon: Users,
+      color: "#03f73e",
+      description: "Coordination de projets, encadrement d’équipes pluridisciplinaires, supervision opérationnelle",
+      skills: ["Gestion de projet", "Leadership", "Communication", "Planification", "Suivi des performances", "Méthodes Agile/Scrum"],
+      projects: 5,
+      clients: 5,
+    },
+    {
+      title: "Contenus numériques & Personal Branding",
+      icon: Megaphone,
+      color: "#067220",
+      description: "Création de contenus, animation de communautés et valorisation de l’image professionnelle.",
+      skills: ["Rédaction de contenu",
+        "Community Management",
+        "Branding personnel",
+        "Optimisation LinkedIn",
+        "Création visuelle",
+        "Animation de communautés",
+        "Publication d'offres & accompagnement carrière"
+    ],
+      projects: 5,
+      clients: 5,
+    },
+
   ]
 
   const skills = [
@@ -445,7 +486,7 @@ export default function ExpertPortfolio() {
       image: "/arti.png",
       type: "Hybrid",
       domains: ["Marketing", "Dev", "IT"],
-      technologies: ["React", "Node.js", "PostgreSQL", "LinkedIn API", "Facebook Ads"],
+      technologies: ["React/Next.js", "Node.js", "PostgreSQL"],
     },
     {
       title: "KS+ DistributionPro",
@@ -633,10 +674,10 @@ export default function ExpertPortfolio() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-blue-600 bg-clip-text text-transparent">
-              Triple Expertise
+              Expert en digital, développement et IA.            
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Une approche unique combinant marketing, développement et support IT pour des solutions complètes
+              J’allie marketing, développement, support IT, gestion d’équipes et IA pour des solutions innovantes.
             </p>
           </motion.div>
 
