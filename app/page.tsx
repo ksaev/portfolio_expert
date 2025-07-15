@@ -356,7 +356,9 @@ const handleClick = async () => {
   const fileName = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf"
 
   // 1. Téléchargement
-  saveAs(fileUrl, fileName)
+  {/* saveAs(fileUrl, fileName) */}
+
+  handleDownload ()
 
   // 2. Confettis 🎉
   confetti({
@@ -696,10 +698,7 @@ export default function ExpertPortfolio() {
                 transition={{ delay: 0.6 }}
                 className="text-base sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
               >
-                Expert polyvalent combinant <span className="text-green-600 font-semibold">marketing digital</span>,{" "}
-                <span className="text-blue-600 font-semibold">développement</span> et{" "}
-                <span className="text-purple-600 font-semibold">support IT</span> pour des solutions complètes et
-                innovantes.
+                  Concepteur de solutions digitales innovantes, du code à la communication.
               </motion.p>
 
               <motion.div
