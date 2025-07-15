@@ -362,10 +362,10 @@ const handleClick = async () => {
 
   // 2. Confettis 🎉
   confetti({
-    particleCount: 120,
-    spread: 70,
+    particleCount: 2000,
+    spread: 100,
     origin: { y: 0.6 },
-    colors: ["#2563eb", "#a855f7", "#10b981"],
+    colors: ["#F77F00", "#FFFFFF", "#009E60"],
   })
 
   // 3. Question à l’utilisateur
