@@ -7,6 +7,10 @@ import { motion, useScroll, useTransform, useSpring, AnimatePresence, useInView 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { saveAs } from "file-saver";
+import { toast } from 'react-hot-toast'
+import confetti from "canvas-confetti"
+
 import {
   Code2,
   Server,
@@ -297,6 +301,82 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
   )
 }
 
+{/*Telecharger le cv */}
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf";
+    link.download = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleClicker = () => {
+    const fileUrl = "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf";
+    const fileName = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf";
+
+    saveAs(fileUrl, fileName);
+
+    toast.custom(
+      (t) => (
+        <div
+          className={`${
+            t.visible ? "animate-enter" : "animate-leave"
+          } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+        >
+          <div className="flex-1 w-0 p-4">
+            <div className="flex items-start">
+              <div className="flex-shrink-0 pt-0.5">
+                <Download className="h-6 w-6 text-blue-500" />
+              </div>
+              <div className="ml-3 flex-1">
+                <p className="text-sm font-medium text-gray-900">
+                  Téléchargement réussi ✅
+                </p>
+                <p className="mt-1 text-sm text-gray-500">
+                  Votre CV est en cours de téléchargement.
+                </p>
+                <div className="relative mt-2 h-1 w-full bg-gray-200 rounded-full overflow-hidden">
+                  <div
+                    className="bg-blue-500 h-1 rounded-full animate-progress"
+                    style={{ animationDuration: "3000ms" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+      { duration: 3500 }
+    );
+  };
+
+const handleClick = async () => {
+  const fileUrl = "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf"
+  const fileName = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf"
+
+  // 1. Téléchargement
+  saveAs(fileUrl, fileName)
+
+  // 2. Confettis 🎉
+  confetti({
+    particleCount: 120,
+    spread: 70,
+    origin: { y: 0.6 },
+    colors: ["#2563eb", "#a855f7", "#10b981"],
+  })
+
+  // 3. Question à l’utilisateur
+  setTimeout(() =>{
+  const openFile = window.confirm("Téléchargement terminé ! Voulez-vous ouvrir le CV ?")
+  if (openFile) {
+    window.open(fileUrl, "_blank")
+  }
+  },
+2500)
+}
+
+
 export default function ExpertPortfolio() {
   const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
@@ -315,7 +395,7 @@ export default function ExpertPortfolio() {
       color: "#3B82F6",
       description: "Applications web, mobile, systèmes de gestion sur mesure",
       skills: ["Java", "Spring Boot", "React/Next.js", "Node.js", "Python","Flutter", "Bases de données"],
-      projects: 10,
+      projects: +15,
       clients: 5,
     },
     {
@@ -324,7 +404,7 @@ export default function ExpertPortfolio() {
       color: "#8B5CF6",
       description: "Administration système, maintenance, infrastructure cloud",
       skills: ["Windows/Linux", "Cloud AWS/Azure", "Réseau", "Sécurité"],
-      projects: 5,
+      projects: 10,
       clients: 5,
     },
 
@@ -335,7 +415,7 @@ export default function ExpertPortfolio() {
       description: "Transmission des fondamentaux et applications concrètes de l’IA",
       skills: ["Machine Learning", "ChatGPT", "Midjourney", "Python", "Data Analysis", "Prompt Engineering", "Automatisation IA"],
       projects: 5,
-      clients: 5,
+      clients: 1,
     },
         {
       title: "Marketing Digital",
@@ -343,8 +423,8 @@ export default function ExpertPortfolio() {
       color: "#10B981",
       description: "Stratégies digitales, campagnes publicitaires, génération de leads",
       skills: ["LinkedIn Ads", "Facebook Ads", "Google Analytics", "Marketing Automation"],
-      projects: 5,
-      clients: 5,
+      projects: 10,
+      clients: 2,
     },
     {
       title: "Gestion de groupes & d’équipes",
@@ -352,8 +432,8 @@ export default function ExpertPortfolio() {
       color: "#03f73e",
       description: "Coordination de projets, encadrement d’équipes pluridisciplinaires, supervision opérationnelle",
       skills: ["Gestion de projet", "Leadership", "Communication", "Planification", "Suivi des performances", "Méthodes Agile/Scrum"],
-      projects: 5,
-      clients: 5,
+      projects: 2,
+      clients: 2,
     },
     {
       title: "Contenus numériques & Personal Branding",
@@ -540,7 +620,7 @@ export default function ExpertPortfolio() {
             </div>
             <span className="font-semibold text-gray-800">KSAEV</span>
           </div>
-            <div className="flex space-x-2 sm:space-x-4">
+            <div className="flex space-x-3 sm:space-x-4">
               {["Accueil", "Expertise", "Projets", "Contact"].map((item) => (
                 <a
                   key={item}
@@ -638,7 +718,9 @@ export default function ExpertPortfolio() {
                 </Button>
                 */}
                 <Button size="lg" variant="outline" className="border-2 hover:bg-blue-500"
-                onClick={()=>window.open("/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf")}>
+                  onClick={handleClick}
+                  >
+                  
                   <Download className="mr-2 h-5 w-5" />
                   Télécharger CV
                 </Button>

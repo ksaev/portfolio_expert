@@ -299,3 +299,17 @@
     border-color: #3b82f6;
   }
 }
+
+@keyframes progress {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-progress {
+  animation: progress 3s linear forwards;
+}
+

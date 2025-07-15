@@ -74,14 +74,19 @@ module.exports = {
           "0%, 100%": { opacity: 1 },
           "50%": { opacity: 0.5 },
         },
+        progress: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        progress: "progress 3s linear forwards",
         float: "float 3s ease-in-out infinite",
         pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
