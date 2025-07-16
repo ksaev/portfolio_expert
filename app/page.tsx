@@ -307,12 +307,24 @@ const handleDownload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
   const files = {
     en: {
-      url: "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.pdf",
-      name: "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.pdf",
+      word: {
+        url: "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.docx",
+        name: "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.docx",
+      },
+      pdf: {
+        url: "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.pdf",
+        name: "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.pdf",
+      },
     },
     fr: {
-      url: "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.pdf",
-      name: "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.pdf",
+      word: {
+        url: "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.docx",
+        name: "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.docx",
+      },
+      pdf: {
+        url: "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.pdf",
+        name: "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.pdf",
+      },
     },
   } as const;
 
@@ -323,15 +335,27 @@ const handleDownload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   }
 
   try {
-    const link = document.createElement("a");
-    link.href = selected.url;
-    link.download = selected.name;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+    // Télécharge Word d’abord
+    const wordLink = document.createElement("a");
+    wordLink.href = selected.word.url;
+    wordLink.download = selected.word.name;
+    wordLink.target = "_blank";
+    wordLink.rel = "noopener noreferrer";
+    document.body.appendChild(wordLink);
+    wordLink.click();
+    document.body.removeChild(wordLink);
 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Ensuite, télécharge PDF (léger délai pour éviter double clics)
+    setTimeout(() => {
+      const pdfLink = document.createElement("a");
+      pdfLink.href = selected.pdf.url;
+      pdfLink.download = selected.pdf.name;
+      pdfLink.target = "_blank";
+      pdfLink.rel = "noopener noreferrer";
+      document.body.appendChild(pdfLink);
+      pdfLink.click();
+      document.body.removeChild(pdfLink);
+    }, 800); // délai léger pour séparer les deux téléchargements
 
     // 🎉 Confettis
     confetti({
@@ -341,11 +365,11 @@ const handleDownload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       colors: ["#F77F00", "#FFFFFF", "#009E60"],
     });
 
-    // 🔔 Ouverture
+    // 🔔 Proposition d'ouverture du PDF
     setTimeout(() => {
-      const openFile = window.confirm("Téléchargement lancé ! Voulez-vous ouvrir le CV ?");
+      const openFile = window.confirm("Téléchargement lancé ! Voulez-vous ouvrir le CV en PDF ?");
       if (openFile) {
-        window.open(selected.url, "_blank");
+        window.open(selected.pdf.url, "_blank");
       }
     }, 3500);
   } catch (error) {
@@ -353,9 +377,6 @@ const handleDownload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     alert("Erreur lors du téléchargement. Veuillez réessayer.");
   }
 };
-
-
-  
 
 
 export default function ExpertPortfolio() {
@@ -712,7 +733,7 @@ export default function ExpertPortfolio() {
                   onClick={handleDownload}
                   >
                   <Download className="mr-2 h-5 w-5" />
-                  Télécharger CV 
+                  Download CV 
                   <Flag code="gb" style={{ width: 24, height: 16 }} /> 
                 </Button>
               </motion.div>
