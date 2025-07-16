@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { saveAs } from "file-saver";
 import { toast } from 'react-hot-toast'
 import confetti from "canvas-confetti"
+import Flag from "react-world-flags"
 
 import {
   Code2,
@@ -82,7 +83,7 @@ const RoleMorpher = () => {
   const roles = [
     { text: "Marketeur Digital", color: "#10B981", icon: TrendingUp },
     { text: "Développeur Full Stack", color: "#3B82F6", icon: Code2 },
-    { text: "Data analyste", color: "#8B5CF6", icon: Database },
+    { text: "Data analyste", color: "#F77F00", icon: Database },
     { text: "Technicien Informatique", color: "#8B5CF6", icon: Server },
   ]
 
@@ -301,82 +302,60 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
   )
 }
 
-{/*Telecharger le cv */}
-  const handleDownload = () => {
+const handleDownload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const id = e.currentTarget.id as "en" | "fr";
+
+  const files = {
+    en: {
+      url: "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.pdf",
+      name: "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.pdf",
+    },
+    fr: {
+      url: "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.pdf",
+      name: "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.pdf",
+    },
+  } as const;
+
+  const selected = files[id];
+  if (!selected) {
+    alert("Langue non supportée.");
+    return;
+  }
+
+  try {
     const link = document.createElement("a");
-    link.href = "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf";
-    link.download = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf";
+    link.href = selected.url;
+    link.download = selected.name;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
 
-  const handleClicker = () => {
-    const fileUrl = "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf";
-    const fileName = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf";
+    // 🎉 Confettis
+    confetti({
+      particleCount: 2000,
+      spread: 90,
+      origin: { y: 0.6 },
+      colors: ["#F77F00", "#FFFFFF", "#009E60"],
+    });
 
-    saveAs(fileUrl, fileName);
-
-    toast.custom(
-      (t) => (
-        <div
-          className={`${
-            t.visible ? "animate-enter" : "animate-leave"
-          } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-        >
-          <div className="flex-1 w-0 p-4">
-            <div className="flex items-start">
-              <div className="flex-shrink-0 pt-0.5">
-                <Download className="h-6 w-6 text-blue-500" />
-              </div>
-              <div className="ml-3 flex-1">
-                <p className="text-sm font-medium text-gray-900">
-                  Téléchargement réussi ✅
-                </p>
-                <p className="mt-1 text-sm text-gray-500">
-                  Votre CV est en cours de téléchargement.
-                </p>
-                <div className="relative mt-2 h-1 w-full bg-gray-200 rounded-full overflow-hidden">
-                  <div
-                    className="bg-blue-500 h-1 rounded-full animate-progress"
-                    style={{ animationDuration: "3000ms" }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-      { duration: 3500 }
-    );
-  };
-
-const handleClick = async () => {
-  const fileUrl = "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf"
-  const fileName = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney.pdf"
-
-  // 1. Téléchargement
-  {/* saveAs(fileUrl, fileName) */}
-
-  handleDownload ()
-
-  // 2. Confettis 🎉
-  confetti({
-    particleCount: 2000,
-    spread: 100,
-    origin: { y: 0.6 },
-    colors: ["#F77F00", "#FFFFFF", "#009E60"],
-  })
-
-  // 3. Question à l’utilisateur
-  setTimeout(() =>{
-  const openFile = window.confirm("Téléchargement terminé ! Voulez-vous ouvrir le CV ?")
-  if (openFile) {
-    window.open(fileUrl, "_blank")
+    // 🔔 Ouverture
+    setTimeout(() => {
+      const openFile = window.confirm("Téléchargement lancé ! Voulez-vous ouvrir le CV ?");
+      if (openFile) {
+        window.open(selected.url, "_blank");
+      }
+    }, 3500);
+  } catch (error) {
+    console.error("❌ Erreur de téléchargement :", error);
+    alert("Erreur lors du téléchargement. Veuillez réessayer.");
   }
-  },
-2500)
-}
+};
+
+
+  
 
 
 export default function ExpertPortfolio() {
@@ -385,6 +364,11 @@ export default function ExpertPortfolio() {
   const { scrollYProgress } = useScroll()
   const yRange = useTransform(scrollYProgress, [0, 1], [0, 100])
   const pathLength = useSpring(scrollYProgress, { stiffness: 400, damping: 90 })
+  const fileUrlFr = "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.pdf";
+  const fileNameFr = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_fr.pdf";
+
+  const fileUrlEn = "/CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.pdf";
+  const fileNameEn = "CV_Kouassi_Siebe_Adelphe_Eymard_Vianney_en.pdf";
 
   useEffect(() => {
     setMounted(true)
@@ -716,12 +700,20 @@ export default function ExpertPortfolio() {
                   Voir mes réalisations
                 </Button>
                 */}
-                <Button size="lg" variant="outline" className="border-2 hover:bg-blue-500"
-                  onClick={handleClick}
+                <Button id="fr" size="lg" variant="outline" className=" bg-blue-600 border-2 text-white hover:bg-orange-600  hover:text-white"
+                  onClick={handleDownload}
                   >
-                  
                   <Download className="mr-2 h-5 w-5" />
-                  Télécharger CV
+                  Télécharger CV 
+                  <Flag code="fr" style={{ width: 24, height: 16 }} /> 
+                </Button>
+
+                <Button id="en" size="lg" variant="outline" className=" bg-blue-600 border-2 text-white hover:bg-orange-600  hover:text-white"
+                  onClick={handleDownload}
+                  >
+                  <Download className="mr-2 h-5 w-5" />
+                  Télécharger CV 
+                  <Flag code="gb" style={{ width: 24, height: 16 }} /> 
                 </Button>
               </motion.div>
             </div>
